@@ -18,10 +18,10 @@ const blocksRevealed = document.querySelectorAll('.reveal')
 
 window.addEventListener('scroll', () => {
     blocksRevealed.forEach(element => {
-        const {innerHeight} = window;
-        const {top} = element.getBoundingClientRect();
+        const {top, bottom} = element.getBoundingClientRect();
+        const isVisible = top < window.innerHeight && bottom > 0;
 
-        if (top < innerHeight && top > 0) {
+        if (isVisible) {
             element.classList.add('reveal_active');
         } else {
             element.classList.remove('reveal_active');
